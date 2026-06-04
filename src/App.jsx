@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import './App.css'
+import StudentCard from "./components/StudentCard";
 
 function App() {
   const [courses, setCourses] = useState([
@@ -36,14 +36,10 @@ function App() {
           <p>Student Number: 132492</p>
           <p>Below is a list of the courses I am registered for this semester.</p>
 
-          <ul>
-            {courses.map((course) => (
-              <li key={course.id}>
-                {course.name} - {course.credits} Credit - Grade: {course.grade}
-              </li>
-            ))}
-          </ul>
-        </div>
+          {courses.map((course) => (
+            <StudentCard key={course.id} course={course} />
+          ))}
+          </div>
       </>
   )
 }

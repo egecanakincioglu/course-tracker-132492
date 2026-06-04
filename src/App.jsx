@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useCallback, useRef } from 'react'
 import StudentCard from "./components/StudentCard";
 import RegisterCourse from "./components/RegisterCourse";
 
@@ -29,10 +29,16 @@ function App() {
         difficulty: "Modarate",
       },
   ]);
+  const registerCount = useRef(0);
 
-  const handleRegister = (newCourse) => {
-    setCourses([...courses, newCourse]);
-  };
+  const handleRegister = useCallback(
+    (newCourse) => {
+      registerCount.current += 1;
+      console.log(`Total courses registered this session: ${registerCount.current}`);
+      setCourses((prev) => [...prev, newCourse]);
+    },
+    []
+  );
 
   return (
       <>

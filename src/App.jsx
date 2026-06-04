@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import StudentCard from "./components/StudentCard";
+import RegisterCourse from "./components/RegisterCourse";
 
 function App() {
   const [courses, setCourses] = useState([
@@ -7,7 +8,7 @@ function App() {
         id: 1,
         name: "English for Information Technology 2",
         credits: 3,
-        grade: 95,
+        grade: 9,
         attending: true,
         difficulty: "Easy",
       },
@@ -15,7 +16,7 @@ function App() {
         id: 2,
         name: "Operating Systems",
         credits: 6,
-        grade: 80,
+        grade: 8,
         attending: true,
         difficulty: "Hard",
       },
@@ -23,11 +24,15 @@ function App() {
         id: 3,
         name: "Applied Probability and Statistics",
         credits: 6,
-        grade: 75,
+        grade: 7,
         attending: true,
         difficulty: "Modarate",
       },
   ]);
+
+  const handleRegister = (newCourse) => {
+    setCourses([...courses, newCourse]);
+  };
 
   return (
       <>
@@ -39,6 +44,8 @@ function App() {
           {courses.map((course) => (
             <StudentCard key={course.id} course={course} />
           ))}
+
+          <RegisterCourse onRegister={handleRegister} />
           </div>
       </>
   )
